@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useInfiniteScroll } from './hooks/useInfiniteScroll';
+import { fetchImages } from './services/flickrAPI';
+import ItemList from './components/ItemList';
+import Loader from './components/Loader';
+import './styles/global.css';
 
-function App() {
+const App: React.FC = () => {
+  const { items, loading } = useInfiniteScroll(fetchImages);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ItemList items={items} />
+      {loading && <Loader />}
     </div>
   );
-}
+};
 
 export default App;
