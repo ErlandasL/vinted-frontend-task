@@ -14,7 +14,11 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, title, imageUrl, isFavourite, o
     <div className={styles.card}>
       <img src={imageUrl} alt={title} className={styles.image} loading="lazy" />
       <div className={styles.overlay}>
-        <h3 className={styles.title}>{title}</h3>
+      <div className={styles.title}>
+        <h3 className={styles.description}>Water Dog</h3>
+        <hr className={styles.hr}/>
+        <p className={styles.author}>Brad Nickerson</p>
+      </div>
         <button onClick={() => onFavouriteToggle(id)} className={styles.favouriteButton}>
           {isFavourite ? 'Unfavourite' : 'Favourite'}
         </button>
